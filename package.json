@@ -27,7 +27,6 @@
     "check.js",
     "index.js"
   ],
-  "main": "index.js",
   "bin": {
     "sdg": "./index.js"
   }
