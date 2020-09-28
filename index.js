@@ -3,6 +3,7 @@
 const parseArgs = require('minimist')
 const { check } = require('./check')
 const { exec } = require('./utils')
+const { warpGate } = require('./warpGate')
 
 var { _: arguments } = parseArgs(process.argv.slice(2))
 
@@ -10,6 +11,13 @@ switch (arguments[0]) {
   case 'check':
     check()
     break
+
+  case 'warp': {
+    const template = arguments[1]
+
+    warpGate(template)
+    break
+  }
 
   case 'toast':
     {
@@ -27,6 +35,8 @@ switch (arguments[0]) {
     break
 
   default:
-    console.log(`usage:\nsdg check - check installed SDG apps\nsdg toast MESSAGE APP - send a toast message`)
+    console.log(
+      `usage:\nsdg warp TEMPLATE - download the contents of a template\nsdg check - check installed SDG apps\nsdg toast MESSAGE APP - send a toast message`
+    )
     break
 }
