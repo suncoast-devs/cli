@@ -1,30 +1,25 @@
 const axios = require('axios')
 const fs = require('fs')
 const path = require('path')
+const YAML = require('yaml')
 
-async function linesForUrl(url) {
+async function getManifest(template) {
   try {
-    const { data } = await axios.get(url)
+    const { data } = await axios.get(
+      `https://raw.githubusercontent.com/suncoast-devs/warp-gate/trunk/${template}/manifest.yml`
+    )
 
-    const files = data.split('\n').filter(file => file.length > 0)
-
-    return files
+    return YAML.parse(data)
   } catch {
-    return []
+    return { files: [], checks: { files: [] } }
   }
 }
 
-async function filesForTemplate(template) {
-  return await linesForUrl(`https://raw.githubusercontent.com/suncoast-devs/warp-gate/trunk/${template}/.files`)
-}
-
-async function checksForTemplate(template) {
-  return await linesForUrl(`https://raw.githubusercontent.com/suncoast-devs/warp-gate/trunk/${template}/.checks`)
-}
-
 async function warpGate(template) {
-  const checks = await checksForTemplate(template)
-  const missingFiles = checks.filter(check => !fs.existsSync(check))
+  const manifest = await getManifest(template)
+  const checks = manifest.checks
+
+  const missingFiles = checks.exists ? checks.exists.filter(file => !fs.existsSync(file)) : []
 
   if (missingFiles.length > 0) {
     console.error(
@@ -33,7 +28,7 @@ async function warpGate(template) {
     return
   }
 
-  const files = await filesForTemplate(template)
+  const files = manifest.files
   if (files.length === 0) {
     console.error(`There were no files found for the template: '${template}'`)
     return

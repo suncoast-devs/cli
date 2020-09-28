@@ -20,7 +20,8 @@
     "compare-versions": "^3.6.0",
     "email-validator": "^2.0.4",
     "inquirer": "^7.3.3",
-    "minimist": "^1.2.5"
+    "minimist": "^1.2.5",
+    "yaml": "^1.10.0"
   },
   "files": [
     ".bin",
