@@ -28,7 +28,7 @@ switch (arguments[0]) {
         exec(`${__dirname}/.bin/snoretoast -silent -m "${message}" -t "${appName}"`)
       } else {
         exec(
-          `${__dirname}/.bin/terminal-notifier.app/Contents/MacOS/terminal-notifier -message "${message}" -title "${appName}"`
+          `${__dirname}/.bin/terminal-notifier.app/Contents/MacOS/terminal-notifier -message "${message}" -title "${appName}" -timeout 2`
         )
       }
     }
