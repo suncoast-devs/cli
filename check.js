@@ -191,7 +191,7 @@ async function sdgWebReactTemplate() {
     'dotnet',
     'dotnet new --debug:showconfig',
     /SDG\.templates\.Web\.React\.(?<version>.*?)\.nupkg.*/i,
-    '4.6.11'
+    '4.6.12'
   )
 }
 
