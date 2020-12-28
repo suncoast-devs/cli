@@ -191,7 +191,7 @@ async function sdgWebReactTemplate() {
     'dotnet',
     'dotnet new --debug:showconfig',
     /SDG\.templates\.Web\.React\.(?<version>.*?)\.nupkg.*/i,
-    '4.6.10'
+    '4.6.11'
   )
 }
 
@@ -209,7 +209,7 @@ async function sdgWebApiTemplate() {
     'dotnet',
     'dotnet new --debug:showconfig',
     /SDG\.templates\.Web\.API\.(?<version>.*?)\.nupkg.*/i,
-    '2.3.9'
+    '2.3.10'
   )
 }
 
