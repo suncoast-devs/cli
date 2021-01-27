@@ -203,7 +203,7 @@ async function sdgWebApiTemplate() {
     'dotnet',
     'dotnet new --debug:showconfig',
     /SDG\.templates\.Web\.API\.(?<version>.*?)\.nupkg.*/i,
-    '2.3.14'
+    '2.3.15'
   )
 }
 
