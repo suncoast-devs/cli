@@ -2,6 +2,7 @@
 
 const parseArgs = require('minimist')
 const { check } = require('./check')
+const { hubCreate } = require('./hubCreate')
 const { exec } = require('./utils')
 const { warpGate } = require('./warpGate')
 
@@ -16,6 +17,13 @@ switch (arguments[0]) {
     const template = arguments[1]
 
     warpGate(template)
+    break
+  }
+
+  case 'hubCreate': {
+    const repoName = arguments[1]
+
+    hubCreate(repoName)
     break
   }
 
