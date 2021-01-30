@@ -167,7 +167,7 @@ async function dotnetEntityFramework() {
     'dotnet',
     'dotnet tool list --global',
     /dotnet-ef\s+(?<version>.*?)\s+.*/,
-    '3.1.2'
+    '5.0.2'
   )
 }
 
@@ -176,7 +176,7 @@ async function dotnetCodeGenerator() {
     'dotnet',
     'dotnet tool list --global',
     /dotnet-aspnet-codegenerator\s+(?<version>.*?)\s+.*/i,
-    '3.1.1'
+    '5.0.1'
   )
 }
 
