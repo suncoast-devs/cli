@@ -338,7 +338,7 @@ async function herokuLogin() {
 // }
 
 async function appapp() {
-  return await runCommandAndCheckVersion('app-app', 'app-app --version', /(?<version>.*?)$/m, '5.2.3')
+  return await runCommandAndCheckVersion('app-app', 'app-app --version', /(?<version>.*?)$/m, '5.2.6')
 }
 
 async function rimraf() {
