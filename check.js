@@ -46,7 +46,6 @@ async function check() {
   await tableRowPush('git Config', gitConfig)
   await tableRowPush('heroku', heroku)
   await tableRowPush('heroku login', herokuLogin)
-  // await tableRowPush('httpie', httpie)
   await tableRowPush('hub', hub)
   await tableRowPush('hub configuration', hubConfiguration)
   await tableRowPush('netlify', netlify)
@@ -332,10 +331,6 @@ async function herokuLogin() {
     return { ok: true }
   }
 }
-
-// async function httpie() {
-//   return await runCommandAndCheckVersion('http', 'http --version', /(?<version>.*?)$/m, '2.2.0')
-// }
 
 async function appapp() {
   return await runCommandAndCheckVersion('app-app', 'app-app --version', /(?<version>.*?)$/m, '5.2.8')
