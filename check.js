@@ -350,7 +350,21 @@ async function prettier() {
 }
 
 async function brew() {
-  return await runCommandAndCheckVersion('brew', 'brew --version', /Homebrew (?<version>.*?)-.*$/m, '2.4.9')
+  const versionCheck = await runCommandAndCheckVersion(
+    'brew',
+    'brew --version',
+    /Homebrew (?<version>[0-9\.]+?)-.*$/m,
+    '2.7.6'
+  )
+
+  if (!versionCheck.ok) {
+    return versionCheck
+  }
+
+  const homebrewDir = (await exec("brew config | grep HOMEBREW_PREFIX| awk -F':' '{print $2}'")).stdout.trim()
+  const findResult = (await exec(`find '${homebrewDir}' -type f -uid root 2>&1`)).stdout.trim()
+
+  return { ok: findResult.length === 0, result: `Some files in ${homebrewDir} are owned by 'root'.` }
 }
 
 exports.check = check
