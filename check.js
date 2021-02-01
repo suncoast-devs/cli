@@ -150,7 +150,7 @@ async function visualStudioCode() {
       return { ok: true }
     } else {
       return { ok: false, result: 'Visual Studio Code is not installed in /Applications' }
-}
+    }
   } else {
     return versionCheck
   }
@@ -197,7 +197,7 @@ async function sdgWebReactTemplate() {
   return await runCommandAndCheckVersion(
     'dotnet',
     'dotnet new --debug:showconfig',
-    /SDG\.templates\.Web\.React\.(?<version>.*?)\.nupkg.*/i,
+    /SDG\.templates\.Web\.React\.(?<version>[0-9\.]+?)\.nupkg.*/i,
     '4.6.18'
   )
 }
@@ -206,7 +206,7 @@ async function sdgConsoleDatabaseTemplate() {
   return await runCommandAndCheckVersion(
     'dotnet',
     'dotnet new --debug:showconfig',
-    /SDG\.templates\.Console\.Database\.(?<version>.*?)\.nupkg.*/i,
+    /SDG\.templates\.Console\.Database\.(?<version>[0-9\.]+?)\.nupkg.*/i,
     '1.0.9'
   )
 }
@@ -215,7 +215,7 @@ async function sdgWebApiTemplate() {
   return await runCommandAndCheckVersion(
     'dotnet',
     'dotnet new --debug:showconfig',
-    /SDG\.templates\.Web\.API\.(?<version>.*?)\.nupkg.*/i,
+    /SDG\.templates\.Web\.API\.(?<version>[0-9\.]+?)\.nupkg.*/i,
     '2.3.17'
   )
 }
@@ -224,7 +224,7 @@ async function sdgConsoleTemplate() {
   return await runCommandAndCheckVersion(
     'dotnet',
     'dotnet new --debug:showconfig',
-    /SDG\.Templates\.Console\.(?<version>.*?)\.nupkg.*/i,
+    /SDG\.Templates\.Console\.(?<version>[0-9\.]+?)\.nupkg.*/i,
     '1.2.11'
   )
 }
