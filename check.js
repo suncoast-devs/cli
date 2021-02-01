@@ -142,7 +142,18 @@ async function visualStudioCodeExtensions() {
 }
 
 async function visualStudioCode() {
-  return await runCommandAndCheckVersion('code', 'code --version', /^(?<version>.*)$/m, '1.47.0')
+  const versionCheck = await runCommandAndCheckVersion('code', 'code --version', /^(?<version>.*)$/m, '1.47.0')
+
+  if (process.platform === 'darwin') {
+    const whichCode = (await exec('readlink $(which code)')).stdout.trim()
+    if (whichCode.match(/^\/Applications/)) {
+      return { ok: true }
+    } else {
+      return { ok: false, result: 'Visual Studio Code is not installed in /Applications' }
+}
+  } else {
+    return versionCheck
+  }
 }
 
 async function git() {
