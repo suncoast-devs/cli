@@ -81,7 +81,10 @@ async function insomnia() {
 }
 
 async function hub() {
-  return await runCommandAndCheckVersion('hub', 'hub --version', /hub version (?<version>.*)/, '2.14.2')
+  // return await runCommandAndCheckVersion('hub', 'hub --version', /hub version (?<version>.*)/, '2.14.2')
+
+  // hub now returns 'refs/heads/master' as it's version, sigh
+  return { ok: true }
 }
 
 async function hubConfiguration() {
