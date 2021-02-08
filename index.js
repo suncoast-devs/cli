@@ -9,6 +9,10 @@ const { warpGate } = require('./warpGate')
 var { _: arguments } = parseArgs(process.argv.slice(2))
 
 switch (arguments[0]) {
+  case 'vsCodeConfig':
+    vsCodeConfig()
+    break
+
   case 'check':
     check()
     break
