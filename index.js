@@ -1,14 +1,20 @@
 #!/usr/bin/env node
 
 const parseArgs = require('minimist')
+const { vsCodeConfig } = require('./vsCodeConfig')
 const { check } = require('./check')
 const { hubCreate } = require('./hubCreate')
 const { exec } = require('./utils')
 const { warpGate } = require('./warpGate')
+const { pgcliConfig } = require('./pgcliConfig')
 
 var { _: arguments } = parseArgs(process.argv.slice(2))
 
 switch (arguments[0]) {
+  case 'pgcliConfig':
+    pgcliConfig()
+    break
+
   case 'vsCodeConfig':
     vsCodeConfig()
     break
