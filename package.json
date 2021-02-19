@@ -26,10 +26,8 @@
   },
   "files": [
     ".bin",
-    "utils.js",
-    "check.js",
     "index.js",
-    "warpGate.js"
+    "src/*.js"
   ],
   "bin": {
     "sdg": "./index.js"

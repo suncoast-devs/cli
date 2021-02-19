@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 
 const parseArgs = require('minimist')
-const { vsCodeConfig } = require('./vsCodeConfig')
-const { check } = require('./check')
-const { hubCreate } = require('./hubCreate')
-const { exec } = require('./utils')
-const { warpGate } = require('./warpGate')
-const { pgcliConfig } = require('./pgcliConfig')
+const { vsCodeConfig } = require('./src/vsCodeConfig')
+const { check } = require('./src/check')
+const { hubCreate } = require('./src/hubCreate')
+const { exec } = require('./src/utils')
+const { warpGate } = require('./src/warpGate')
+const { pgcliConfig } = require('./src/pgcliConfig')
 
 var { _: arguments } = parseArgs(process.argv.slice(2))
 
@@ -54,7 +54,14 @@ switch (arguments[0]) {
 
   default:
     console.log(
-      `usage:\nsdg warp TEMPLATE - download the contents of a template\nsdg check - check installed SDG apps\nsdg toast MESSAGE APP - send a toast message`
+      `usage:
+       sdg warp TEMPLATE - download the contents of a template
+       sdg check - check installed SDG apps
+       sdg toast MESSAGE APP - send a toast message
+       sdg vsConfig - Configure your Visual Studio environment
+       sdg pgcliConfig - Configure your pgcli (Mac OS only)
+       sdg hubCreate - Create a github project for the current directory
+       `
     )
     break
 }
