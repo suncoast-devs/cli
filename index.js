@@ -58,7 +58,7 @@ switch (arguments[0]) {
        sdg warp TEMPLATE - download the contents of a template
        sdg check - check installed SDG apps
        sdg toast MESSAGE APP - send a toast message
-       sdg vsConfig - Configure your Visual Studio environment
+       sdg vsCodeConfig - Configure your Visual Studio environment
        sdg pgcliConfig - Configure your pgcli (Mac OS only)
        sdg hubCreate - Create a github project for the current directory
        `
