@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+const path = require('path')
 const parseArgs = require('minimist')
 const { vsCodeConfig } = require('./src/vsCodeConfig')
 const { check } = require('./src/check')
@@ -31,7 +32,7 @@ switch (arguments[0]) {
   }
 
   case 'hubCreate': {
-    const repoName = arguments[1]
+    const repoName = arguments[1] || path.basename(process.cwd())
 
     hubCreate(repoName)
     break
