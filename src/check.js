@@ -198,7 +198,7 @@ async function sdgWebReactTemplate() {
     'dotnet',
     'dotnet new --debug:showconfig',
     /SDG\.templates\.Web\.React\.(?<version>[0-9\.]+?)\.nupkg.*/i,
-    '4.6.23'
+    '4.6.24'
   )
 }
 
@@ -207,7 +207,7 @@ async function sdgConsoleDatabaseTemplate() {
     'dotnet',
     'dotnet new --debug:showconfig',
     /SDG\.templates\.Console\.Database\.(?<version>[0-9\.]+?)\.nupkg.*/i,
-    '1.0.9'
+    '1.0.12'
   )
 }
 
@@ -216,7 +216,7 @@ async function sdgWebApiTemplate() {
     'dotnet',
     'dotnet new --debug:showconfig',
     /SDG\.templates\.Web\.API\.(?<version>[0-9\.]+?)\.nupkg.*/i,
-    '2.3.20'
+    '2.3.21'
   )
 }
 
@@ -225,7 +225,7 @@ async function sdgConsoleTemplate() {
     'dotnet',
     'dotnet new --debug:showconfig',
     /SDG\.Templates\.Console\.(?<version>[0-9\.]+?)\.nupkg.*/i,
-    '1.2.11'
+    '1.2.13'
   )
 }
 
