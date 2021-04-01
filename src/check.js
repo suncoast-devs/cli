@@ -269,14 +269,30 @@ function vsCodeSettings() {
 async function gitConfig() {
   let answer = { ok: true, result: '' }
 
-  if ((await exec('git config --global user.name')).stdout.length === 0) {
+  const userName = (await exec('git config --global user.name')).stdout.trim()
+  if (userName.length === 0) {
     answer.ok = false
     answer.result += 'user.name not configured\n'
   }
 
-  if (!emailValidator.validate((await exec('git config --global user.email')).stdout.trim())) {
+  const email = (await exec('git config --global user.email')).stdout.trim()
+  if (!emailValidator.validate(email)) {
     answer.ok = false
     answer.result += 'user.email not configured correctly\n'
+  }
+
+  const hubApi = JSON.parse((await exec('hub api user')).stdout || '{}')
+  const hubUserName = (hubApi.name || '').trim()
+  const hubEmail = (hubApi.email || '').trim()
+
+  if (hubUserName && hubUserName !== userName) {
+    answer.ok = false
+    answer.result += `user.name (${userName}) does not match what you have on Github (${hubUserName})\n`
+  }
+
+  if (hubEmail && hubEmail !== email) {
+    answer.ok = false
+    answer.result += `user.email (${email}) does not match what you have on Github (${hubEmail})\n`
   }
 
   if ((await exec('git config --global github.user')).stdout.length === 0) {
