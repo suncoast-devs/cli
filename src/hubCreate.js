@@ -5,6 +5,7 @@ async function getRepoDetails(user, repoName) {
   const apiDetails = await exec(`hub api /repos/${user.login}/${repoName}`)
 
   console.log({ apiDetails })
+  console.log(apiDetails.stdout)
   return JSON.parse(apiDetails.stdout)
 }
 
