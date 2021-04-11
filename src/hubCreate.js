@@ -2,7 +2,10 @@ const { exec } = require('./utils')
 const childProcess = require('child_process')
 
 async function getRepoDetails(user, repoName) {
-  return JSON.parse((await exec(`hub api /repos/${user.login}/${repoName}`)).stdout)
+  const apiDetails = (await exec(`hub api /repos/${user.login}/${repoName}`)).stdout
+
+  console.log({ apiDetails })
+  return JSON.parse(apiDetails)
 }
 
 async function createRepo(repoName) {
@@ -11,6 +14,8 @@ async function createRepo(repoName) {
 
 async function hubCreate(repoName) {
   const user = JSON.parse((await exec('hub api user')).stdout)
+
+  console.log({ user })
 
   for (let copy = 0; ; copy++) {
     const repoNameToCheck = copy === 0 ? repoName : `${repoName}-${copy}`
