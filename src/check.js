@@ -242,29 +242,44 @@ function vsCodeSettings() {
 
   let answer = { ok: true, result: '' }
 
-  if (json['editor.formatOnSave'] != true) {
+  if (json['editor.formatOnSave'] !== true) {
     answer.ok = false
     answer.result += '"editor.formatOnSave" is not set correctly\n'
   }
 
-  if (json['editor.tabSize'] != 2) {
+  if (json['editor.tabSize'] !== 2) {
     answer.ok = false
     answer.result += '"editor.tabSize" is not set correctly\n'
   }
 
-  if (json['javascript.implicitProjectConfig.checkJs'] != true) {
+  if (json['javascript.implicitProjectConfig.checkJs'] !== true) {
     answer.ok = false
     answer.result += '"javascript.implicitProjectConfig.checkJs" is not set correctly\n'
   }
 
-  if (json['[csharp]']['editor.insertSpaces'] != true) {
+  if (json['[csharp]']['editor.insertSpaces'] !== true) {
     answer.ok = false
     answer.result += '[csharp]editor.insertSpaces is not set correctly\n'
   }
 
-  if (json['[csharp]']['editor.tabSize'] != 4) {
+  if (json['[csharp]']['editor.tabSize'] !== 4) {
     answer.ok = false
     answer.result += '[csharp]editor.tabSize is not set correctly\n'
+  }
+
+  if (json['[csharp]']['editor.defaultFormatter'] !== 'ms-dotnettools.csharp') {
+    answer.ok = false
+    answer.result += '[csharp]editor.defaultFormatter is not set correctly\n'
+  }
+
+  if (json['editor.defaultFormatter'] !== 'esbenp.prettier-vscode') {
+    answer.ok = false
+    answer.result += 'editor.defaultFormatter is not set correctly\n'
+  }
+
+  if (json['git.enableSmartCommit'] !== true) {
+    answer.ok = false
+    answer.result += 'git.enableSmartCommit'
   }
 
   return answer
