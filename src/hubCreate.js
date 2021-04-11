@@ -2,11 +2,11 @@ const { exec } = require('./utils')
 const childProcess = require('child_process')
 
 async function getRepoDetails(user, repoName) {
-  return JSON.parse((await exec(`hub api /repos/${user.login}/${repoName} || true`)).stdout)
+  return JSON.parse((await exec(`hub api /repos/${user.login}/${repoName}`)).stdout)
 }
 
 async function createRepo(repoName) {
-  return (await exec(`hub create ${repoName} || true`)).stdout
+  return (await exec(`hub create ${repoName}`)).stdout
 }
 
 async function hubCreate(repoName) {
