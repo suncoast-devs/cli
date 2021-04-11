@@ -5,7 +5,7 @@ const commandExistsSync = require('command-exists').sync
 const { parse } = require('comment-json')
 const fs = require('fs')
 
-const exec = command => execChildProcess(command).catch(ex => Promise.resolve({ stdout: ex.message, stderr: '' }))
+const exec = command => execChildProcess(command).catch((ex, stdout, stderr) => Promise.resolve({ ex, stdout, stderr }))
 
 async function runCommandAndCheckVersion(command, commandLine, versionRegexp, minVersion) {
   if (!commandExistsSync(command)) {
