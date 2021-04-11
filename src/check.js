@@ -229,11 +229,15 @@ async function sdgConsoleTemplate() {
   )
 }
 
+function getUserHome() {
+  return process.env[process.platform === 'win32' ? 'USERPROFILE' : 'HOME']
+}
+
 function vsCodeSettings() {
   const json = getJSONFromFile(
     process.platform === 'win32'
-      ? `${process.env.HOME}\\AppData\\Roaming\\Code\\User\\settings.json`
-      : `${process.env.HOME}/Library/Application Support/Code/User/settings.json`
+      ? `${getUserHome()}\\AppData\\Roaming\\Code\\User\\settings.json`
+      : `${getUserHome()}/Library/Application Support/Code/User/settings.json`
   )
 
   let answer = { ok: true, result: '' }
