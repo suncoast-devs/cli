@@ -80,13 +80,6 @@ async function insomnia() {
   return checkForApp('insomnia')
 }
 
-async function hub() {
-  // return await runCommandAndCheckVersion('hub', 'hub --version', /hub version (?<version>.*)/, '2.14.2')
-
-  // hub now returns 'refs/heads/master' as it's version, sigh
-  return { ok: true }
-}
-
 async function hubConfiguration() {
   const json = JSON.parse((await exec('hub api user')).stdout)
 
@@ -161,7 +154,7 @@ async function git() {
 }
 
 async function hub() {
-  return await runCommandAndCheckVersion('hub', 'hub --version', /hub version (?<version>.*)/, '2.14.2')
+  return await runCommandAndCheckVersion('hub', 'hub --version', /git version (?<version>.*)/, '2.28.0')
 }
 
 async function dotnet() {
@@ -396,8 +389,8 @@ async function prettier() {
 async function brew() {
   const versionCheck = await runCommandAndCheckVersion(
     'brew',
-    'brew --version',
-    /Homebrew (?<version>[0-9\.]+?)-.*$/m,
+    'brew config',
+    /HOMEBREW_VERSION: (?<version>.*)$/im,
     '2.7.6'
   )
 
