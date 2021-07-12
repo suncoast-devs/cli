@@ -119,15 +119,13 @@ async function visualStudioCodeExtensions() {
 
   await checkVSCodeExtension(answer, extensions, '2gua.rainbow-brackets')
   await checkVSCodeExtension(answer, extensions, 'streetsidesoftware.code-spell-checker')
+  await checkVSCodeExtension(answer, extensions, 'meganrogge.template-string-converter')
   await checkVSCodeExtension(answer, extensions, 'ms-dotnettools.csharp')
-  await checkVSCodeExtension(answer, extensions, 'austincummings.razor-plus')
   await checkVSCodeExtension(answer, extensions, 'jchannon.csharpextensions')
   await checkVSCodeExtension(answer, extensions, 'jorgeserrano.vscode-csharp-snippets')
   await checkVSCodeExtension(answer, extensions, 'dbaeumer.vscode-eslint')
   await checkVSCodeExtension(answer, extensions, 'ecmel.vscode-html-css')
   await checkVSCodeExtension(answer, extensions, 'esbenp.prettier-vscode')
-  await checkVSCodeExtension(answer, extensions, 'skyran.js-jsx-snippets')
-  await checkVSCodeExtension(answer, extensions, 'xabikos.ReactSnippets')
   await checkVSCodeExtension(answer, extensions, 'Zignd.html-css-class-completion')
   await checkVSCodeExtension(answer, extensions, 'formulahendry.auto-rename-tag')
 
@@ -245,7 +243,7 @@ function vsCodeSettings() {
     answer.result += '"editor.tabSize" is not set correctly\n'
   }
 
-  if (json['javascript.implicitProjectConfig.checkJs'] !== true) {
+  if (json['js/ts.implicitProjectConfig.checkJs'] !== true) {
     answer.ok = false
     answer.result += '"javascript.implicitProjectConfig.checkJs" is not set correctly\n'
   }
@@ -282,13 +280,13 @@ async function gitConfig() {
   let answer = { ok: true, result: '' }
 
   const userName = (await exec('git config --global user.name')).stdout.trim()
-  if (userName.length === 0) {
+  if (userName.length === 0 || `${userName}`.toLowerCase().includes('example')) {
     answer.ok = false
     answer.result += 'user.name not configured\n'
   }
 
   const email = (await exec('git config --global user.email')).stdout.trim()
-  if (!emailValidator.validate(email)) {
+  if (!emailValidator.validate(email) || `${email}`.toLowerCase().includes('example')) {
     answer.ok = false
     answer.result += 'user.email not configured correctly\n'
   }
