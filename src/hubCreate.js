@@ -38,6 +38,12 @@ async function hubCreate(repoName) {
       }
     }
   }
+
+  const hasGitDirectoryAfterCreate = fs.existsSync('.git')
+  if (hasGitDirectoryAfterCreate) {
+    // Push any commits
+    await exec(`git push origin HEAD`)
+  }
 }
 
 exports.hubCreate = hubCreate
