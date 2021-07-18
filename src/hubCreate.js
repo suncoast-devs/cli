@@ -28,7 +28,8 @@ async function hubCreate(repoName) {
 
   // Don't do anything if we don't have a valid hub api user
   if (user.login) {
-    for (let copy = 0; ; copy++) {
+    // Try up to 20 times to make a github repo (with increasing version numbers in the name)
+    for (let copy = 0; copy < 20; copy++) {
       const repoNameToCheck = copy === 0 ? repoName : `${repoName}-${copy}`
       const repoDetails = await getRepoDetails(user, repoNameToCheck)
       if (repoDetails.message === 'Not Found') {
