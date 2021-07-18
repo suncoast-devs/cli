@@ -1,4 +1,5 @@
 const { exec } = require('./utils')
+const fs = require('fs')
 
 async function getRepoDetails(user, repoName) {
   const apiDetails = await exec(`hub api /repos/${user.login}/${repoName}`)
@@ -11,16 +12,29 @@ async function createRepo(repoName) {
 }
 
 async function hubCreate(repoName) {
+  // Look to see if a `.git` directory exists.
+  //
+  // How could we make sure we don't really do anything if this isn't
+  // a real project? (check for package.json or *.csproj)?
+  const hasGitDirectory = fs.existsSync('.git')
+  if (!hasGitDirectory) {
+    // Create an initial git repository and make a commit
+    await exec(`git init`)
+    await exec(`git add .`)
+    await exec(`git commit -m "Initial Commit"`)
+  }
+
   const user = JSON.parse((await exec('hub api user')).stdout)
 
-  console.log({ user })
-
-  for (let copy = 0; ; copy++) {
-    const repoNameToCheck = copy === 0 ? repoName : `${repoName}-${copy}`
-    const repoDetails = await getRepoDetails(user, repoNameToCheck)
-    if (repoDetails.message === 'Not Found') {
-      console.log(await createRepo(repoNameToCheck))
-      break
+  // Don't do anything if we don't have a valid hub api user
+  if (user.login) {
+    for (let copy = 0; ; copy++) {
+      const repoNameToCheck = copy === 0 ? repoName : `${repoName}-${copy}`
+      const repoDetails = await getRepoDetails(user, repoNameToCheck)
+      if (repoDetails.message === 'Not Found') {
+        await createRepo(repoNameToCheck)
+        break
+      }
     }
   }
 }
