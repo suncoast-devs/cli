@@ -1,5 +1,5 @@
 const { Spinner } = require('clui')
-const colors = require('colors/safe')
+const colors = require('@colors/colors/safe')
 const emailValidator = require('email-validator')
 const Table = require('cli-table3')
 
